@@ -3,7 +3,6 @@
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const express = require('express');
 
 const applyTo = (app) => {
@@ -14,7 +13,6 @@ const applyTo = (app) => {
     const libsPath = path.join(__dirname, '../../node_modules/');
     app.use('/libs', express.static(libsPath));
 
-    app.use(cookieParser('keyboard cat'));
 };
 
 module.exports = { applyTo };
