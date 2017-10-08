@@ -1,19 +1,10 @@
-/* eslint-disable no-console */
+const express = require('express')
+const app = express()
+let port = process.env.PORT || 3001;
 
-const async = () => {
-    return Promise.resolve();
-};
+app.use(express.static('./public'));
+app.use('/libs', express.static('node_modules'))
 
-const config = require('./config');
-
-async()
-.then(() => require('./db').init(config.connectionString))
-    .then((db) => require('./data').init(db))
-    .then((data) => require('./app').init(data))
-    .then((app) => {
-        app.listen(config.port, () =>
-            console.log(`Magic happends at :${config.port}`));
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+app.listen(port, function() {
+    console.log('Example app listening on port 3001!')
+})
