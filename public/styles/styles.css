@@ -783,7 +783,7 @@ section {
     text-decoration: underline;
 }
 
-@media only all and (max-width: 990px) {
+@media (max-width: 990px) {
     .contents {
         max-width: 768;
     }
@@ -808,7 +808,7 @@ section {
     }
 }
 
-@media only all and (max-width: 796px) {
+@media (max-width: 796px) {
     .contents {
         max-width: 480px;
     }
@@ -922,7 +922,7 @@ section {
     }
 }
 
-@media only all and (max-width: 509px) {
+@media (max-width: 509px) {
     .contents {
         width: 320px;
     }
