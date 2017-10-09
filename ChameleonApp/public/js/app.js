@@ -1,8 +1,23 @@
-var begin;
+let begin;
 
 function init() {
-    (function setEvents() {
 
+
+    $('.slides-nav-arrows').on('click', 'li', changeSlide);
+
+    $('.slides-nav').on('click', 'li', changeSlideFromNav);
+
+    let startTimer = () => {
+        begin = setInterval(countdown, 5000);
+    }
+
+    let stopTimer = () => {
+        clearInterval(begin) // clear the interval and stop the clock
+    }
+
+    let countdown = () => $('.slide-next-btn').trigger('click');
+
+    if (!begin) {
         $('.article div').on({
             mouseenter: hoverArticle,
             mouseleave: leaveArticle
@@ -15,28 +30,16 @@ function init() {
 
         $('.mm-control').on('click', '> a', changeMmSlide);
 
-        $('.slides-nav-arrows').on('click', 'li', changeSlide);
-
-        $('.slides-nav').on('click', 'li', changeSlideFromNav);
 
         $('.small-menu').on('click', toggleSmallMenu);
-    }());
 
+        $('.small-menu-items a').on('click', toggleSmallMenu);
 
-
-
-    if (!!begin) {
+    } else {
         stopTimer();
 
     }
     startTimer();
-
-
-
-
-
-
-
 
 
     function hoverArticle(e) {
@@ -52,20 +55,20 @@ function init() {
     function hoverMediaIcon(e) {
         $(e.target).fadeTo(200, 0.8);
         $(e.target.nextElementSibling).fadeTo(200, 1);
-        var description = $($(e.target).parent()).parent().children('div');
+        let description = $($(e.target).parent()).parent().children('div');
         $(description).fadeTo(200, 1).css('display', 'block');
     }
 
     function leaveMediaIcon(e) {
         $(e.target).fadeTo(200, 1);
         $(e.target.nextElementSibling).fadeTo(200, 0);
-        var description = $($(e.target).parent()).parent().children('div');
+        let description = $($(e.target).parent()).parent().children('div');
         $(description).fadeTo(200, 0).css('display', 'none');
     }
 
     function changeMmSlide(e) {
         e.preventDefault();
-        var left = $(e.target).hasClass('mm-left-arrow'),
+        let left = $(e.target).hasClass('mm-left-arrow'),
             slidesCount = $('#mm-slides').children('div').length,
             i,
             activeSlideNumber,
@@ -108,7 +111,7 @@ function init() {
     }
 
     function changeSlide(e) {
-        var slides = $('.slides').children('li'),
+        let slides = $('.slides').children('li'),
             slidesCount = slides.length,
             i,
             activeSlide,
@@ -149,7 +152,7 @@ function init() {
     }
 
     function changeSlideFromNav(e) {
-        var slides = $('.slides').children('li'),
+        let slides = $('.slides').children('li'),
             i,
             activeSlide,
             caller,
@@ -171,31 +174,12 @@ function init() {
     }
 
     function toggleSmallMenu(e) {
-        var $menu = $('.small-menu-items');
+        let $menu = $('.small-menu-items');
         if ($menu.css('display') == 'block') {
-            $menu
-                .css('height', '750')
-                .animate({
-                    height: 0
-                }, 700);
-            $menu.css('display', 'none');
+            $menu.fadeOut(50);
+
         } else {
-            $menu
-                .css('height', '0')
-                .css('display', 'block')
-                .animate({
-                    height: 750
-                }, 700);
+            $menu.fadeIn(50);
         }
     }
 }
-
-var startTimer = function() {
-    begin = setInterval(countdown, 5000);
-}
-
-var stopTimer = function() {
-    clearInterval(begin) // clear the interval and stop the clock
-}
-
-var countdown = () => $('.slide-next-btn').trigger('click');

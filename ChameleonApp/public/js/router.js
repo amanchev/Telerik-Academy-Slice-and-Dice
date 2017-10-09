@@ -11,7 +11,6 @@ function loadHTML(url, id) {
     req.send();
     req.onload = () => {
         $id(id).innerHTML = req.responseText;
-
         init();
     }
 }
@@ -21,6 +20,7 @@ router = new Navigo(null, true);
 router.on({
     // 'view' is the id of the div element inside which we render the HTML
     'home': () => {
+
         loadHTML('./templates/home.html', 'view');
     },
     'articles': () => { loadHTML('./templates/articles.html', 'view') },
