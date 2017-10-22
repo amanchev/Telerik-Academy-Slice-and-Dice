@@ -1,4 +1,5 @@
 // getElementById wrapper
+
 function $id(id) {
     return document.getElementById(id);
 }
@@ -15,8 +16,42 @@ function loadHTML(url, id) {
     }
 }
 
+function loadHTMLWithTemplate(url, id, params) {
+    req = new XMLHttpRequest();
+    req.open('GET', url);
+    req.send();
+    req.onload = () => {
+        loadTemplate(id, params);
+    }
+
+
+
+}
+
+function loadTemplate(id, params) {
+    let template = Handlebars.compile(req.responseText);
+
+    let url2 = 'http://localhost:3001/api/' + params.params;
+    req2 = new XMLHttpRequest();
+    req2.open('GET', url2)
+    req2.send();
+    req2.onload = () => {
+        let context = JSON.parse(req2.response);
+
+        let html = template(context);
+        $id(id).innerHTML = html;
+        init();
+
+    }
+}
+
+//window.onhashchange(() => loadTemplate())
+
 // use #! to hash
 router = new Navigo(null, true);
+router.on('post/:params', (params, query) => {
+    loadHTMLWithTemplate('./templates/post.html', 'view', params);
+}, );
 router.on({
     // 'view' is the id of the div element inside which we render the HTML
     'home': () => {
@@ -24,15 +59,15 @@ router.on({
         loadHTML('./templates/home.html', 'view');
     },
     'articles': () => { loadHTML('./templates/articles.html', 'view') },
-    'post': () => { loadHTML('./templates/post.html', 'view') },
     '404': () => { loadHTML('./templates/404.html', 'view') }
 });
+
 
 // set the default route
 router.on(() => { window.location.hash = '#/home' });
 
 // set the 404 route
-router.notFound((query) => { window.location.hash = '#/404' })
+//router.notFound((query) => { window.location.hash = '#/404' })
 
 
 router.resolve();

@@ -7,8 +7,6 @@ body {
     font-family: 'Droid Sans', Arial, sans-serif;
     color: #929292;
     background: #f4f4f4 url(../images/texture.png);
-    padding-top: 48px;
-    padding-bottom: 48px;
 }
 
 h1,
@@ -432,11 +430,10 @@ ul {
 }
 
 .category-articles {
-    width: 68%;
+    width: 83%;
     margin-bottom: 25px;
     padding-right: 25px;
     box-sizing: border-box;
-    display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     border-right: 1px solid #f0f0f0
@@ -448,8 +445,31 @@ ul {
 
 .category-articles .article {
     width: 100%;
-    margin-top: 45px;
     margin-top: 70px;
+}
+
+.item {
+    width: 42%;
+    margin: 25px;
+    display: inline-block;
+    text-align: center;
+}
+
+.item img {
+    width: 80%;
+    text-align: center;
+}
+
+.description {
+    text-align: left;
+}
+
+.morecontent span {
+    display: none;
+}
+
+.buy-now-btn {
+    margin-top: 15px;
 }
 
 .category-articles .article:first-of-type {
@@ -587,6 +607,13 @@ ul {
 
 .side-bar .section:first-of-type {
     margin: 0;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    width: 12%;
+    box-sizing: border-box;
 }
 
 .blog-posts,
@@ -783,6 +810,27 @@ section {
     text-decoration: underline;
 }
 
+@media (min-width: 1800px) {
+    * {
+        font-size: 104%;
+    }
+    .menu {
+        margin: 0;
+    }
+    .item {
+        width: 28%;
+    }
+}
+
+@media (min-width: 1080px) {
+    .body {
+        font-size: 29px;
+    }
+    .contents {
+        max-width: 80%;
+    }
+}
+
 @media (max-width: 990px) {
     .contents {
         max-width: 768;
@@ -806,9 +854,19 @@ section {
         margin: 15px 0 0 0;
         padding: 0;
     }
+    .item {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 25px;
+        display: inline-block;
+        text-align: center;
+    }
 }
 
 @media (max-width: 796px) {
+    .item {
+        padding-bottom: 25px;
+    }
     .contents {
         max-width: 480px;
     }
@@ -834,7 +892,7 @@ section {
         background-color: rgba(255, 255, 255, 0.85);
         position: absolute;
         box-sizing: border-box;
-        border: solid 1px;
+        border: none;
         border-radius: 4px;
         width: 440px;
         top: 86px;
@@ -897,6 +955,7 @@ section {
     .category-articles {
         width: 100%;
         padding-right: 0;
+        border: none;
     }
     .article div p {
         text-align: left;

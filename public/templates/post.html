@@ -1,113 +1,82 @@
 <div id="wrapper">
-    <div class="category-caption inner-caption">
-        <div>
-            <div>
-                <h3 class="body-caption-font">Post Title Goes Right Here</h3>
-                <p class="titles-font">Posted by <a href="#/">Admin</a> on March 13, 2010 in Some Category</p>
-            </div>
-        </div>
-    </div>
+
 
     <div class="category-content inner-content">
         <div class="category-articles">
-            <div class="article">
-                <h3 class="body-caption-font">Post Title Goes Right Here</h3>
-                <div class="article-info large-font">
-                    Posted by <span>Admin</span> on March 13, 2011 in <span>Some category</span> | 30 Comments
-                </div>
-                <div class="article-thumb">
-                    <a href="#">
-                        <img alt="Article № 3" src="./images/thumbs/thumb03.png">
-                    </a>
-                </div>
-                <div class="article-content">
-                    <p>
-                        Curabitur blandit rutrum pharetra. Donec dictum felis eu eros pretium vulputate. Etiam quis nulla ac turpis molestie tempus et in purus. Suspendisse potenti. Integer accumsan accumsan est, ac accumsan nunc sollicitudin id. Pellentesque tortor lectus,
-                        faucibus vitae fermentum vitae, laoreet sit amet erat. Cras luctus, turpis a suscipit venenatis, lorem lectus bibendum neque, quis congue dui tellus in lorem. Praesent rhoncus euismod elementum. Pellentesque tempor, metus quis
-                        dignissim imperdiet, risus mi volutpat massa, ut consequat
-                    </p>
-                    <div class="read-more">
-                        <a href="#">Read More</a>
-                    </div>
+            {{#each this}} {{#if this.title}}
+            <div class="item">
+                <h2 class="item-title">
+                    {{this.title}}
+                </h2>
+                <img src="{{this.imgURL}}" alt="" class="item-img">
+
+                <div class="description more">{{this.text}}</div>
+                <div class="price-container">
+                    <button class="buy-now-btn">BUY NOW {{this.price}}$</button>
                 </div>
             </div>
+            {{else}}
+            <ul id="paginate">
+                {{#each this}}
+                <li><a page="{{this}}">{{this}}</a></li>
+                {{/each}}
+            </ul>
+            {{/if}}{{/each}}
+
+
+
+
+
         </div>
 
-        <div class="side-bar">
+        <div class="side-bar products">
             <div class="section">
-                <h3 class="titles-font">From The Blog</h3>
-                <ul>
-                    <li>
-                        <a href="#">Curabitur blandit rutrum felis pretium</a>
-                    </li>
-                    <li>
-                        <a href="#">Pharetra donec dictum felis eu quis</a>
-                    </li>
-                    <li>
-                        <a href="#">Eros pretium vulputate dictum donec </a>
-                    </li>
-                    <li>
-                        <a href="#">Etiam quis nulla ac turpis moles</a>
-                    </li>
-                    <li>
-                        <a href="#">Suspendisse potenti integer donec 
-                                    </a>
-                    </li>
-                    <li>
-                        <a href="#">Accumsan nunc sollicitudin id pelle</a>
-                    </li>
-                </ul>
+                <h3 class="titles-font">Price</h3>
+                <select id="price">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </div>
+            <div class="section">
+
+                <h3 class="titles-font">Brand</h3>
+                <form action="" id="brand-filter">
+                    <input type="radio" name="brand" value="LG" id="lg"><label for="lg">LG</label><br>
+                    <input type="radio" name="brand" value="SAMSUNG" id="samsung"><label for="samsung">Samsung</label><br>
+                </form>
+            </div>
+            <div class="section">
+                <h3 class="titles-font">Resolution</h3>
+                <form action="" id="resolution-filter">
+                    <input type="radio" name="resolution" value="4k" id="4k"><label for="4k">4K</label><br>
+                    <input type="radio" name="resolution" value="fullhd" id="fullhd"><label for="fullhd">FullHD</label><br>
+                </form>
+            </div>
+            <div class="section">
+                <h3 class="titles-font">Size</h3>
+                <form action="" id="size-filter">
+                    <input type="radio" name="size" value="24" id="24inch"><label for="24inch">24 inches</label><br>
+                    <input type="radio" name="size" value="32" id="32inch"><label for="32inch">32 inches</label><br>
+                    <input type="radio" name="size" value="38" id="38inch"><label for="38inch">38 inches</label><br>
+                    <input type="radio" name="size" value="42" id="42inch"><label for="42inch">42 inches</label><br>
+                    <input type="radio" name="size" value="47" id="47inch"><label for="47inch">47 inches</label><br>
+                    <input type="radio" name="size" value="55" id="55inch"><label for="55inch">55 inches</label><br>
+                    <input type="radio" name="size" value="65" id="65inch"><label for="65inch">65 inches</label><br>
+                </form>
+            </div>
+            <div class="section">
+                <h3 class="titles-font">Extras</h3>
+                <form action="" id="tag-filter">
+                    <input type="radio" name="tag" value="smart" id="smart-tag"><label for="smart-tag">Smart</label><br>
+                    <input type="radio" name="tag" value="2017" id="2017-tag"><label for="2017-tag">2017</label><br>
+                    <input type="radio" name="tag" value="2016" id="2016-tag"><label for="2016-tag">2016</label><br>
+                    <input type="radio" name="tag" value="2015" id="2015-tag"><label for="2015-tag">2015</label><br>
+                    <input type="radio" name="tag" value="lcd" id="lcd-tag"><label for="lcd-tag">LCD</label><br>
+                    <input type="radio" name="tag" value="led" id="led-tag"><label for="led-tag">LED</label><br>
+                </form>
             </div>
 
-            <div class="section">
-                <h3 class="titles-font">Archives</h3>
-                <ul>
-                    <li>
-                        <a href="#">Curabitur blandit rutrum felis pretium</a>
-                    </li>
-                    <li>
-                        <a href="#">Pharetra donec dictum felis eu quis</a>
-                    </li>
-                    <li>
-                        <a href="#">Eros pretium vulputate dictum donec </a>
-                    </li>
-                    <li>
-                        <a href="#">Etiam quis nulla ac turpis moles</a>
-                    </li>
-                    <li>
-                        <a href="#">Suspendisse potenti integer donec 
-                                    </a>
-                    </li>
-                    <li>
-                        <a href="#">Accumsan nunc sollicitudin id pelle</a>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="section">
-                <h3 class="titles-font">Recent Posts</h3>
-                <ul>
-                    <li>
-                        <a href="#">Curabitur blandit rutrum felis pretium</a>
-                    </li>
-                    <li>
-                        <a href="#">Pharetra donec dictum felis eu quis</a>
-                    </li>
-                    <li>
-                        <a href="#">Eros pretium vulputate dictum donec </a>
-                    </li>
-                    <li>
-                        <a href="#">Etiam quis nulla ac turpis moles</a>
-                    </li>
-                    <li>
-                        <a href="#">Suspendisse potenti integer donec 
-                                    </a>
-                    </li>
-                    <li>
-                        <a href="#">Accumsan nunc sollicitudin id pelle</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
