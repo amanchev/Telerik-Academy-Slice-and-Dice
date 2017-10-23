@@ -1,4 +1,5 @@
 module.exports = (app, db) => {
+    let ObjectId = require('mongodb').ObjectID;
     app.get('/api/products', (req, res) => {
         let type = req.query.sort;
         let page = parseInt(req.query.page) || 1;
@@ -9,14 +10,23 @@ module.exports = (app, db) => {
         delete query['page'];
         delete query['count'];
 
-        console.log(query);
-
         let data = db.collection('products').find(query).toArray((err, result) => {
             if (err) throw err;
 
             let context = sort(result, type);
             context = paginate(context, page, count);
             res.send(context)
+        });
+
+    });
+    app.get('/api/products/all', (req, res) => {
+
+
+        let data = db.collection('products').find().toArray((err, result) => {
+            if (err) throw err;
+
+
+            res.send(result)
         });
 
     });
@@ -43,6 +53,30 @@ module.exports = (app, db) => {
         });
 
     });
+    app.put('/api/products', (req, res) => {
+        console.log(req.body);
+
+        let data = db.collection('products').findOneAndUpdate({ "_id": ObjectId(req.query.id) }, { $set: req.body })
+        res.send('Modifyed')
+    });
+    app.delete('/api/products/all', (req, res) => {
+        if (req.query.confirm === 'yes') {
+            db.collection('products').remove({});
+            res.send('DELETED');
+        } else {
+            res.send('You have to confirm DELETE action! Query: ?confirm=yes');
+        }
+    });
+    app.delete('/api/products', (req, res) => {
+        if (req.query.confirm === 'yes') {
+            db.collection('products').remove({ "_id": ObjectId(req.query.id) });
+            res.send('DELETED');
+        } else {
+            res.send('You have to confirm DELETE action! Query: ?confirm=yes');
+        }
+    });
+
+
 
     function paginate(context, page, count) {
 

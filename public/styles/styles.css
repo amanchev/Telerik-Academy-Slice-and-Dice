@@ -455,9 +455,13 @@ ul {
     text-align: center;
 }
 
-.item img {
+.image-container {
     width: 80%;
     text-align: center;
+}
+
+.image-container img {
+    height: 200px;
 }
 
 .description {
@@ -860,6 +864,9 @@ section {
         margin-bottom: 25px;
         display: inline-block;
         text-align: center;
+    }
+    .image-container img {
+        height: auto;
     }
 }
 

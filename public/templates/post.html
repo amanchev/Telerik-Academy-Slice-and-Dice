@@ -8,7 +8,9 @@
                 <h2 class="item-title">
                     {{this.title}}
                 </h2>
-                <img src="{{this.imgURL}}" alt="" class="item-img">
+                <div class="image-container">
+                    <img src="{{this.imgURL}}" alt="" class="item-img">
+                </div>
 
                 <div class="description more">{{this.text}}</div>
                 <div class="price-container">
@@ -59,6 +61,7 @@
                     <input type="radio" name="size" value="32" id="32inch"><label for="32inch">32 inches</label><br>
                     <input type="radio" name="size" value="38" id="38inch"><label for="38inch">38 inches</label><br>
                     <input type="radio" name="size" value="42" id="42inch"><label for="42inch">42 inches</label><br>
+                    <input type="radio" name="size" value="43" id="43inch"><label for="43inch">43 inches</label><br>
                     <input type="radio" name="size" value="47" id="47inch"><label for="47inch">47 inches</label><br>
                     <input type="radio" name="size" value="55" id="55inch"><label for="55inch">55 inches</label><br>
                     <input type="radio" name="size" value="65" id="65inch"><label for="65inch">65 inches</label><br>
@@ -74,6 +77,9 @@
                     <input type="radio" name="tag" value="lcd" id="lcd-tag"><label for="lcd-tag">LCD</label><br>
                     <input type="radio" name="tag" value="led" id="led-tag"><label for="led-tag">LED</label><br>
                 </form>
+            </div>
+            <div class="section">
+                <a href="/#/post/products" class="clear-filter"><button>Clear Filter</button></a>
             </div>
 
 

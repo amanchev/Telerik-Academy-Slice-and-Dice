@@ -41,7 +41,7 @@ function init() {
 
 
     let e = $("#price");
-    let val = getParameterByName('sort')
+    let val = getParameterByName('sort') || 'ascending'
     $("#price").val(val);
     e.on('change', () => {
         let priceSort = e.val();
