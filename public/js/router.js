@@ -31,7 +31,7 @@ function loadHTMLWithTemplate(url, id, params) {
 function loadTemplate(id, params) {
     let template = Handlebars.compile(req.responseText);
 
-    let url2 = 'http://localhost:3001/api/' + params.params;
+    let url2 = '/api/' + params.params;
     req2 = new XMLHttpRequest();
     req2.open('GET', url2)
     req2.send();
