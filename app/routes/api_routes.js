@@ -54,7 +54,6 @@ module.exports = (app, db) => {
 
     });
     app.put('/api/products', (req, res) => {
-        console.log(req.body);
 
         let data = db.collection('products').findOneAndUpdate({ "_id": ObjectId(req.query.id) }, { $set: req.body })
         res.send('Modifyed')
@@ -84,16 +83,19 @@ module.exports = (app, db) => {
         if (page > pagesCount) {
             page = 1;
         }
-        // let pages = [];
+        let pages = [];
 
-        // for (var i = 1; i <= pagesCount; i++) {
-        //     pages.push(i)
+        for (var i = 1; i <= pagesCount; i++) {
+            pages.push(i)
 
-        // }
+        }
 
         context = context.slice((page - 1) * count, count * page)
-            //context.push(pages);
-        return context;
+        let result = {
+            'pages': pages,
+            'products': context
+        };
+        return result;
 
     }
 
